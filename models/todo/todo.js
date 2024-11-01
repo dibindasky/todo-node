@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
-const todoSchmea = new Schema({
+const todoSchema = new Schema({
     title: { type: String, default: '' },
     description: { type: String, default: '' },
     isPinned: { type: Boolean, default: false },
@@ -12,4 +12,4 @@ const todoSchmea = new Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('todo', todoSchmea);
+module.exports = mongoose.model('todo', todoSchema);
