@@ -1,12 +1,12 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const dotenv = require('dotenv')
+const express = require("express");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv")
 const app = express()
-dotenv.config()
+dotenv.config() 
 
 const userRoutes = require('./routes/users/user_route')
 
-app.use(express.json({ limit: '500mb' }));
+// app.use(express.json({ limit: '500mb' }));
 app.use('/users', userRoutes);
 
 mongoose.connect(process.env.MONGO_URL).then((v) => {
