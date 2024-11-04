@@ -11,4 +11,5 @@ router.get('/pinned-todo', authMiddleware.authenticateUser, todoController.getPi
 router.get('/completed-todo', authMiddleware.authenticateUser, todoController.getCompletedTodo);
 router.patch('/update', authMiddleware.authenticateUser, todoController.updateTodo);
 
+
 module.exports = router;
