@@ -17,20 +17,19 @@ Method: POST
 Description: Register a new user.
 Request Body:
 {
-  "phone": "7025214086",
-  "email": "dibin@gmail.com",
-  "name": "Dibin",
-  "password": "dibin4086"
+  "phone": "9876543210",
+  "email": "email@gmail.com",
+  "name": "name",
+  "password": "strongpassword"
 }
 
 Response:
 {
   "message": "user signup successfully",
   "user": {
-    "name": "Dibins",
-    "email": "dibins@gmail.com",
-    "phone": 7025214083,
-    "password": "$2b$10$BpJKblvM94p3eq6pohcD1O1J34s9hGvdX0Ojl6gr.T1gDpyPi2Vp6",
+    "name": "name",
+    "email": "email@gmail.com",
+    "phone": 9876543210,
     "_id": "6728abb71f70b3ef784bc07d",
     "__v": 0
   }
@@ -43,8 +42,8 @@ Method: POST
 Description: Log in an existing user.
 Request Body:
 {
-  "phone": "7025214086",
-  "password": "dibin4086"
+  "phone": "9876543210",
+  "password": "strongpassword"
 }
 
 Response:
@@ -52,9 +51,9 @@ Response:
   "message": "user signedup successfully",
   "user": {
     "_id": "67286fffd290c57533aced62",
-    "name": "Dibin",
-    "email": "dibin@gmail.com",
-    "phone": 7025214086,
+    "name": "Name",
+    "email": "email@gmail.com",
+    "phone": 9876543210,
     "__v": 0
   },
   "token": "<JWT_TOKEN>"
@@ -134,7 +133,7 @@ Description: Update a specific todo item.
 Headers: Authorization: Bearer <JWT_TOKEN>
 Request Body:
 {
-  "id": "67289fe2f80505b88409e65d",
+  "id": "67289fe2f80505b88409e65d", // should pass id for updation
   "title": "give title if any change is there",
   "description": "give description if any change is there",
   "deleted": false,       // Set true to delete
