@@ -37,6 +37,26 @@ exports.getDeletedTodo = async (req, res) => {
     }
 }
 
+exports.getPinnedTodo = async (req, res) => {
+    try {
+        const data = await todoModel.find({ isPinned: true, userId: req.user.id });
+        return res.status(200).json({ message: 'todo fetch successfully', todo: data });
+    } catch {
+        return res.status(500).json({ error: 'server error' });
+
+    }
+}
+
+exports.getCompletedTodo = async (req, res) => {
+    try {
+        const data = await todoModel.find({ completed: true, userId: req.user.id });
+        return res.status(200).json({ message: 'todo fetch successfully', todo: data });
+    } catch {
+        return res.status(500).json({ error: 'server error' });
+
+    }
+}
+
 exports.updateTodo = async (req, res) => {
     try {
         // const { id } = req.params;
