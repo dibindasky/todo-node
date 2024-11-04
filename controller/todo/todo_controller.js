@@ -59,12 +59,14 @@ exports.getCompletedTodo = async (req, res) => {
 
 exports.updateTodo = async (req, res) => {
     try {
-        // const { id } = req.params;
         const data = req.body;
+        if (!data.id) {
+            return res.status(400).json({ error: 'id cannot be empty' });
+        }
         let response = await todoModel.findById(data.id);
 
         if (!response) {
-            return res.status(404).json({ error: 'Todo not found' });
+            return res.status(404).json({ error: 'Todo not found with the given id' });
         }
 
         response.set(data);
