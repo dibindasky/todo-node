@@ -8,6 +8,7 @@ exports.createTodo = async (req, res) => {
             return res.status(400).json({ error: 'required field title or description missing' });
         }
         var todo = new todoModel(data);
+        todo.userId = req.user.id;
         await todo.save();
         return res.status(201).json({ message: 'todo created successfully' });
     } catch (e) {
@@ -18,7 +19,17 @@ exports.createTodo = async (req, res) => {
 
 exports.getTodo = async (req, res) => {
     try {
-        const data = await todoModel.find({ deleted: false });
+        const data = await todoModel.find({ deleted: false, userId: req.user.id });
+        return res.status(200).json({ message: 'todo fetch successfully', todo: data });
+    } catch {
+        return res.status(500).json({ error: 'server error' });
+
+    }
+}
+
+exports.getDeletedTodo = async (req, res) => {
+    try {
+        const data = await todoModel.find({ deleted: true, userId: req.user.id });
         return res.status(200).json({ message: 'todo fetch successfully', todo: data });
     } catch {
         return res.status(500).json({ error: 'server error' });
@@ -28,9 +39,9 @@ exports.getTodo = async (req, res) => {
 
 exports.updateTodo = async (req, res) => {
     try {
-        const { id } = req.params;
+        // const { id } = req.params;
         const data = req.body;
-        let response = await todoModel.findById(id);
+        let response = await todoModel.findById(data.id);
 
         if (!response) {
             return res.status(404).json({ error: 'Todo not found' });
